@@ -4,7 +4,7 @@ const configureDB = require('./config/database')
 const router = require('./config/routes')
 const cors = require('cors')
 require('dotenv').config()
-const port = 3030
+const port = process.env.PORT || 3030;
 
 app.use(cors())
 configureDB()
