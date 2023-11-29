@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const configureDB = () => {
-    mongoose.connect('mongodb://127.0.0.1:27017/expense')
+    mongoose.connect('mongodb+srv://aldrin:Aldrin6991@cluster0.y7oevpt.mongodb.net/')
         .then((res) => {
             console.log('connect to db')
         })
