@@ -1,12 +1,20 @@
 const Expense = require('../models/expense')
+const Budget = require('../models/budget')
 
 const expensesController = {}
 
 expensesController.create =(req, res) => {
     const {title, amount, expenseDate, category} = req.body
     const user = req.tokenData._id
+    const budget = Budget.findOne({user}).amount
+    const  newamount = budget - amount
+    const newbudget = new Expense(data)
     const data = {title, amount, expenseDate, category, user}
     const expense = new Expense(data)
+
+    newbudget.save()
+
+
     expense.save()
         .then((expense) => {
             Expense.findOne({_id: expense._id}).populate('category', ['name'])
