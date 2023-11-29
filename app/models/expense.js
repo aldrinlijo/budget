@@ -12,7 +12,7 @@ const expenseSchema = new Schema({
     },
     expenseDate : {
         type : Date,
-        required : true
+        required : false
     },
     user : {
         type : Schema.Types.ObjectId,
