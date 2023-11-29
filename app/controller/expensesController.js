@@ -8,7 +8,10 @@ expensesController.create =(req, res) => {
     const user = req.tokenData._id
     const budget = Budget.findOne({user}).amount
     const  newamount = budget - amount
-    const newbudget = new Expense(data)
+    const add  = {
+        amount : newamount,
+    }
+    const newbudget = new Budget(add)
     const data = {title, amount, expenseDate, category, user}
     const expense = new Expense(data)
 
