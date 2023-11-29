@@ -8,6 +8,10 @@ const budgetSchema = new Schema({
         required : true,
         default : 0
     },
+    amtTest :{
+        type : Number,
+        default : 0
+    },
     user : {
         type : Schema.Types.ObjectId,
         required : true,
