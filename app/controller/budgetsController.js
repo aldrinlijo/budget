@@ -6,8 +6,8 @@ budgetController.update = (req, res) => {
     const id = req.params.id
     const user = req.tokenData._id
     const body = req.body
-    body.amtTest  = 10000
-    Budget.findOneAndUpdate({id, user}, body, {new:true})
+    const add  = body + 10000
+    Budget.findOneAndUpdate({id, user}, add, {new:true})
         .then((budget) => {
             res.json(budget)
         })
