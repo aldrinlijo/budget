@@ -6,11 +6,11 @@ budgetController.update = (req, res) => {
     const id = req.params.id
     const user = req.tokenData._id
     const body = req.body
-    const add  = {
-        amount : 12000,
-        amtTest: 1000
-    }
-    Budget.findOneAndUpdate({id, user}, add, {new:true})
+    // const add  = {
+    //     amount : 12000,
+    //     amtTest: 1000
+    // }
+    Budget.findOneAndUpdate({id, user}, body, {new:true})
         .then((budget) => {
             res.json(budget)
         })

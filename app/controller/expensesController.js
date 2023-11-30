@@ -6,16 +6,16 @@ const expensesController = {}
 expensesController.create =(req, res) => {
     const {title, amount, expenseDate, category} = req.body
     const user = req.tokenData._id
-    const budget = Budget.findOne({user}).amount
-    const  newamount = budget - amount
-    const add  = {
-        amount : newamount,
-    }
-    const newbudget = new Budget(add)
+    // const budget = Budget.findOne({user}).amount
+    // const  newamount = budget - amount
+    // const add  = {
+    //     amount : newamount,
+    // }
+    // const newbudget = new Budget(add)
     const data = {title, amount, expenseDate, category, user}
     const expense = new Expense(data)
 
-    newbudget.save()
+    //newbudget.save()
 
 
     expense.save()
