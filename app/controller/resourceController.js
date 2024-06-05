@@ -1,4 +1,4 @@
-const Expense = require('../models/expense')
+const Expense = require('../models/resourse')
 
 const expensesController = {}
 
