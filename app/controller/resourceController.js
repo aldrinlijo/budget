@@ -1,17 +1,17 @@
-const Expense = require('../models/resourse')
+const Expense = require('../models/resource')
 
-const expensesController = {}
+const resourceController = {}
 
-expensesController.create =(req, res) => {
+resourceController.create =(req, res) => {
     const {type, id, firstName, lastName, role, department, status} = req.body
     const user = req.tokenData._id
-    const data = {type, id, firstName, lastName, role, department, status}
-    const expense = new Expense(data)
+    const data = {type, id, firstName, lastName, role, department,user, status}
+    const resource = new Resource(data)
     resource.save()
-        .then((expense) => {
+        .then((resource) => {
             Expense.findOne({_id: resource._id}).populate('resource', ['name'])
-                .then((expense) => {
-                    res.json(expense)
+                .then((resource) => {
+                    res.json(resource)
                 })
         })
         .catch((err) => {
@@ -19,40 +19,40 @@ expensesController.create =(req, res) => {
         })
 }
 
-expensesController.list = (req, res) => {
+resourceController.list = (req, res) => {
     const user = req.tokenData._id
-    Expense.find({user}).populate('resource', ['name'])
-        .then((expense) => {
-            res.json(expense)
+    Resource.find({user}).populate('resource', ['name'])
+        .then((resource) => {
+            res.json(resource)
         })
         .catch((err) => {
             res.json(err)
         })
 }
 
-expensesController.update = (req, res) => {
+resourceController.update = (req, res) => {
     const body = req.body
     const id = req.params.id
     const user = req.tokenData._id
-    Expense.findOneAndUpdate({id, user}, body, {new : true})
-        .then((expense) => {
-            res.json(expense)
+    Resource.findOneAndUpdate({id, user}, body, {new : true})
+        .then((resource) => {
+            res.json(resource)
         })
         .catch((err) => {
             res.json(err)
         })
 }
 
-expensesController.delete = (req, res) => {
+resourceController.delete = (req, res) => {
     const id = req.params.id
     const user = req.tokenData._id
-    Expense.findOneAndDelete({id, user})
-        .then((expense) => {
-            res.json(expense)
+    Resource.findOneAndDelete({id, user})
+        .then((resource) => {
+            res.json(resource)
         })
         .catch((err) => {
             res.json(err)
         })
 }
 
-module.exports = expensesController
+module.exports = resourceController
