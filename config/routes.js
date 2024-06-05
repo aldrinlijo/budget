@@ -6,10 +6,16 @@ const categoriesController = require('../app/controller/categoriesController')
 const expensesController = require('../app/controller/expensesController')
 const budgetController = require('../app/controller/budgetsController')
 const {authenticateUser} = require('../app/middleware/authenctication')
+const resourceController = require('../app/controller/resourceController')
 
 router.post('/api/user/register', usersController.register)
 router.post('/api/user/login', usersController.login)
 router.get('/api/user/account', authenticateUser, usersController.account)
+
+router.post('/api/resource', authenticateUser, resourceController.create)
+router.get('/api/resource', authenticateUser, resourceController.list)
+router.put('/api/resource', authenticateUser, resourceController.update)
+router.delete('/api/resource', authenticateUser, resourceController.delete)
 
 router.post('/api/category', authenticateUser, categoriesController.create)
 router.get('/api/category', authenticateUser, categoriesController.list)
