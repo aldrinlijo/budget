@@ -39,4 +39,5 @@ const resourceDetailsSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('ResourceDetails', resourceDetailsSchema);
+const Resource = mongoose.model('Resource', resourceDetailsSchema)
+module.exports = Resource

@@ -1,4 +1,4 @@
-const Expense = require('../models/resource')
+const Resource = require('../models/resource')
 
 const resourceController = {}
 
@@ -9,7 +9,7 @@ resourceController.create =(req, res) => {
     const resource = new Resource(data)
     resource.save()
         .then((resource) => {
-            Expense.findOne({_id: resource._id}).populate('resource', ['name'])
+            Resource.findOne({_id: resource._id}).populate('resource', ['name'])
                 .then((resource) => {
                     res.json(resource)
                 })
