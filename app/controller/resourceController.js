@@ -12,7 +12,7 @@ resourceController.create = async (req, res) => {
         const resource = new Resource(data);
         const savedResource = await resource.save();
 
-        const populatedResource = await Resource.findOne({ _id: savedResource._id }).populate('resource');
+        const populatedResource = await Resource.findOne({ _id: savedResource._id }).populate(resource);
         res.json(populatedResource);
 
         const fullname = `${firstName} ${lastName}`;
@@ -24,7 +24,7 @@ resourceController.create = async (req, res) => {
         };
 
         const response = await axios.post(
-            'https://orgcd35d258.crm8.dynamics.com/api/data/v9.0/dia_ProductResource',
+            'https://orgcd35d258.crm8.dynamics.com/api/data/v9.0/dia_productresource',
             formData,
             {
                 headers: {
