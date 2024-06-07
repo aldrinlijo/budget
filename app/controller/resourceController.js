@@ -12,7 +12,7 @@ resourceController.create = async (req, res) => {
         const resource = new Resource(data);
         const savedResource = await resource.save();
 
-        const populatedResource = await Resource.findOne({ _id: savedResource._id }).populate(resource);
+        const populatedResource = await Resource.findOne({ _id: savedResource._id }).populate('resource');
         res.json(populatedResource);
 
         const fullname = `${firstName} ${lastName}`;
@@ -23,23 +23,24 @@ resourceController.create = async (req, res) => {
             "dia_id": id
         };
 
-        const response = await axios.post(
-            'https://orgcd35d258.crm8.dynamics.com/api/data/v9.0/dia_productresource',
+        const resourceId = '6799792d-cd24-ef11-840a-002248d61d46'; // Replace with your actual resource ID
+        const response = await axios.patch(
+            `https://orgcd35d258.crm8.dynamics.com/api/data/v9.0/dia_productresource(${resourceId})`,
             formData,
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCIsImtpZCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCJ9.eyJhdWQiOiJodHRwczovL29yZ2NkMzVkMjU4LmNybTguZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZTIwMzU3MTEtNTY0MC00OGU1LWJkNzEtOGQ1Yzg1ZGU4ODQwLyIsImlhdCI6MTcxNzc2MzU3NywibmJmIjoxNzE3NzYzNTc3LCJleHAiOjE3MTc3Njc0NzcsImFpbyI6IkUyTmdZUGh2V2VIOXc3ak9OYWo0cjNqZmw2bDdBUT09IiwiYXBwaWQiOiI1ZjBlZTFlMy1jNDdlLTQ0ZmItYTIzZi1kZDFiNGZiYzdkN2IiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9lMjAzNTcxMS01NjQwLTQ4ZTUtYmQ3MS04ZDVjODVkZTg4NDAvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiI5YTQzMWRkMy0zMmMwLTRmYzQtYTEyNi1hMTQyYjdjMjBhNzgiLCJyaCI6IjAuQVQ0QUVWY0Q0a0JXNVVpOWNZMWNoZDZJUUFjQUFBQUFBQUFBd0FBQUFBQUFBQUEtQUFBLiIsInN1YiI6IjlhNDMxZGQzLTMyYzAtNGZjNC1hMTI2LWExNDJiN2MyMGE3OCIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJBUyIsInRpZCI6ImUyMDM1NzExLTU2NDAtNDhlNS1iZDcxLThkNWM4NWRlODg0MCIsInV0aSI6InREX3RjZGk3YTBXN3hjQWZEc0VuQUEiLCJ2ZXIiOiIxLjAifQ.SvqrwkUn9Pm-h69MBz4srOBvDEn6ITCCDSvFj_s7eB0jLgsz0_yQ3zEAlK0Um1-_sAZz9Xh53h2P23SRiw_RaMG8fMM705aSh16Txiy8mwRcCWqN8ZWWlbj1Wqj-YnP-IgKkRfJXW7X98pYp0MMEauusBnfh4LH0g_LxG8d9Ad3ZKusH38pTyrNzbJsZ7isHhiRpGh7Bs33z0MxW-H8E2EToBSI_QZipldGdynou_DvNPTv0hU21C979vRh6X_ya7ATe6w8a-GwT5kEGKd3zwznFTixm1ajHr1HdSXcFpEKh1rP-o5z7pgoaAg6Mi0oIkyVEd3Wypcuw1bwRufc-8Q' // Replace 'YOUR_ACCESS_TOKEN' with your actual token
+                    'Authorization': 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCIsImtpZCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCJ9.eyJhdWQiOiJodHRwczovL29yZ2NkMzVkMjU4LmNybTguZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZTIwMzU3MTEtNTY0MC00OGU1LWJkNzEtOGQ1Yzg1ZGU4ODQwLyIsImlhdCI6MTcxNzc2NTYyNiwibmJmIjoxNzE3NzY1NjI2LCJleHAiOjE3MTc3Njk1MjYsImFpbyI6IkUyTmdZT2pNczUveTlraGtrT3VTNTQxUlNVSzVBQT09IiwiYXBwaWQiOiI1ZjBlZTFlMy1jNDdlLTQ0ZmItYTIzZi1kZDFiNGZiYzdkN2IiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9lMjAzNTcxMS01NjQwLTQ4ZTUtYmQ3MS04ZDVjODVkZTg4NDAvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiI5YTQzMWRkMy0zMmMwLTRmYzQtYTEyNi1hMTQyYjdjMjBhNzgiLCJyaCI6IjAuQVQ0QUVWY0Q0a0JXNVVpOWNZMWNoZDZJUUFjQUFBQUFBQUFBd0FBQUFBQUFBQUEtQUFBLiIsInN1YiI6IjlhNDMxZGQzLTMyYzAtNGZjNC1hMTI2LWExNDJiN2MyMGE3OCIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJBUyIsInRpZCI6ImUyMDM1NzExLTU2NDAtNDhlNS1iZDcxLThkNWM4NWRlODg0MCIsInV0aSI6Ii1UMjBlRi1PVlUyOVFmQ05qRlVXQUEiLCJ2ZXIiOiIxLjAifQ.UMA3Sl8kGcyIFtte17uv7F7kgcDP61RCb3dddk_c5vWMUDXyLlkLOibJg-C0JG-M9BqViOJl3yoRNFpGdbvNXnODIBYrxFmG4hAJRRaGlPcCwASwOjrIEqEz__bVE0DIRFIXXf8HbGLmm1TKrBwJIrwozKjW13QgA2G_s-0qr4vHtarZz5r0q5ZWL6_g-UYWuPNY1-pPH7WDKsoi9QhRxPWz8ijWrraXzfWvSjz7iZ1vMlqTQdvVOiqYCWQvB6SFWVHL0e19RVp62FivqQavvE86B-ERoAxoebWfzPyZcFcadvWrUHh_fXpin-u9XPxAyvl9-wuhontAYYETma1c3g' // Replace 'YOUR_ACCESS_TOKEN' with your actual token
                 }
             }
         );
 
-        if (response.status !== 201) { // Adjust status check based on Dynamics 365 API documentation
-            console.error('Error creating resource in Dynamics 365:', response.statusText);
+        if (response.status !== 204) { // Adjust status check based on Dynamics 365 API documentation
+            console.error('Error updating resource in Dynamics 365:', response.statusText);
         }
 
     } catch (err) {
-        res.json(err);
+        res.status(500).json({ error: err.message });
     }
 };
 
@@ -49,7 +50,7 @@ resourceController.list = async (req, res) => {
         const resources = await Resource.find({ user }).populate('resource', ['name']);
         res.json(resources);
     } catch (err) {
-        res.json(err);
+        res.status(500).json({ error: err.message });
     }
 };
 
@@ -61,7 +62,7 @@ resourceController.update = async (req, res) => {
         const updatedResource = await Resource.findOneAndUpdate({ id, user }, body, { new: true });
         res.json(updatedResource);
     } catch (err) {
-        res.json(err);
+        res.status(500).json({ error: err.message });
     }
 };
 
@@ -72,7 +73,7 @@ resourceController.delete = async (req, res) => {
         const deletedResource = await Resource.findOneAndDelete({ id, user });
         res.json(deletedResource);
     } catch (err) {
-        res.json(err);
+        res.status(500).json({ error: err.message });
     }
 };
 
