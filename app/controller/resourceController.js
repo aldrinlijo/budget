@@ -27,7 +27,7 @@ resourceController.create = async (req, res) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + 'YOUR_ACCESS_TOKEN', // Replace 'YOUR_ACCESS_TOKEN' with your actual token
+                'Authorization': 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCIsImtpZCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCJ9.eyJhdWQiOiJodHRwczovL29yZ2NkMzVkMjU4LmNybTguZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZTIwMzU3MTEtNTY0MC00OGU1LWJkNzEtOGQ1Yzg1ZGU4ODQwLyIsImlhdCI6MTcxNzczMjIyNCwibmJmIjoxNzE3NzMyMjI0LCJleHAiOjE3MTc3MzYxMjQsImFpbyI6IkUyTmdZQkRyREgvdG5Ubm54czJua1VmbVBIOGREUUE9IiwiYXBwaWQiOiI1ZjBlZTFlMy1jNDdlLTQ0ZmItYTIzZi1kZDFiNGZiYzdkN2IiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9lMjAzNTcxMS01NjQwLTQ4ZTUtYmQ3MS04ZDVjODVkZTg4NDAvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiI5YTQzMWRkMy0zMmMwLTRmYzQtYTEyNi1hMTQyYjdjMjBhNzgiLCJyaCI6IjAuQVQ0QUVWY0Q0a0JXNVVpOWNZMWNoZDZJUUFjQUFBQUFBQUFBd0FBQUFBQUFBQUEtQUFBLiIsInN1YiI6IjlhNDMxZGQzLTMyYzAtNGZjNC1hMTI2LWExNDJiN2MyMGE3OCIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJBUyIsInRpZCI6ImUyMDM1NzExLTU2NDAtNDhlNS1iZDcxLThkNWM4NWRlODg0MCIsInV0aSI6ImFIYTE5TzVUb2tDV1NjdVZhM1VLQUEiLCJ2ZXIiOiIxLjAifQ.hYknqXYOzgUUQ2xZt_XFLIRLWZ1mAttG7LBGlY2EmALoh0-POmqzTxWLowYCPnwX5AOBenvRINXySAIx2XxgPB6HpNw0Pqvk9Ln9Sw4j6qhst-Pm8cnSrOmWCSSJlxRN6Zcac_R6weX_cfR18UKK9pcQHvbOh8mbY2xZIg8KJv0p4F9x2Mry53DGkyt1iQJcUAPPpZC8DLC-2tUSsKyEq5khfOMfkaD3IPTVFLWhoDYMDLApKx4CTJ2OD1uTp6D4UtqfUjTjHeAJUrPS07FWy8hajvviIdEQQ_lCcz0omDkKIQP_aVl4tG4fn0l8AjLuN2LN77H8zDwyMGvJPgVpRg', // Replace 'YOUR_ACCESS_TOKEN' with your actual token
             },
             body: JSON.stringify(formData),
         });
