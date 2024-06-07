@@ -1,5 +1,5 @@
+const axios = require('axios');
 const Resource = require('../models/resource');
-const fetch = require('node-fetch');
 
 const resourceController = {};
 
@@ -23,16 +23,18 @@ resourceController.create = async (req, res) => {
             "dia_id": id
         };
 
-        const response = await fetch('https://orgcd35d258.crm8.dynamics.com/api/data/v9.0/dia_ProductResource', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCIsImtpZCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCJ9.eyJhdWQiOiJodHRwczovL29yZ2NkMzVkMjU4LmNybTguZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZTIwMzU3MTEtNTY0MC00OGU1LWJkNzEtOGQ1Yzg1ZGU4ODQwLyIsImlhdCI6MTcxNzc2MTA1NiwibmJmIjoxNzE3NzYxMDU2LCJleHAiOjE3MTc3NjQ5NTYsImFpbyI6IkUyTmdZSGo3c2Vhc2hNeTJ1L3ozNndwRTZoN2VBQUE9IiwiYXBwaWQiOiI1ZjBlZTFlMy1jNDdlLTQ0ZmItYTIzZi1kZDFiNGZiYzdkN2IiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9lMjAzNTcxMS01NjQwLTQ4ZTUtYmQ3MS04ZDVjODVkZTg4NDAvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiI5YTQzMWRkMy0zMmMwLTRmYzQtYTEyNi1hMTQyYjdjMjBhNzgiLCJyaCI6IjAuQVQ0QUVWY0Q0a0JXNVVpOWNZMWNoZDZJUUFjQUFBQUFBQUFBd0FBQUFBQUFBQUEtQUFBLiIsInN1YiI6IjlhNDMxZGQzLTMyYzAtNGZjNC1hMTI2LWExNDJiN2MyMGE3OCIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJBUyIsInRpZCI6ImUyMDM1NzExLTU2NDAtNDhlNS1iZDcxLThkNWM4NWRlODg0MCIsInV0aSI6Ik9zb3VhVjJvWlUtQkRkZWVYdDBsQUEiLCJ2ZXIiOiIxLjAifQ.A11whhukPqwJlC0eTZXeXnzaOjwkJicQ0xv_DLWO9UNOuLx9804IIc1YCk4ffBIn7zRq6ibmp9QSNJcpzJGVrdQ685qfWdMWk964JvW231Fx9IYqeen4fwMg1bcaCmCSjORwDgdeR42Wq26PFtUkd8ZtHe1py6UY07Jg4m2iHzBzOFrpBKH7SrUSSuFmMrFi6It3X50oZmud7Qxrx81XqwJ04-XP1l91GTUGraMOGXZx_jA55mISfTnPc2KlZKQ91rUv80nLr4UP9GKP7w9I4It-FHYED3-m7Vk9hhNZ-BkL6PMV40nfT9-flxIyaPsnt5b90b-h1uwJZ2RMxj7ShA', // Replace 'YOUR_ACCESS_TOKEN' with your actual token
-            },
-            body: JSON.stringify(formData),
-        });
+        const response = await axios.post(
+            'https://orgcd35d258.crm8.dynamics.com/api/data/v9.0/dia_ProductResource',
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCIsImtpZCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCJ9.eyJhdWQiOiJodHRwczovL29yZ2NkMzVkMjU4LmNybTguZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZTIwMzU3MTEtNTY0MC00OGU1LWJkNzEtOGQ1Yzg1ZGU4ODQwLyIsImlhdCI6MTcxNzc2MzU3NywibmJmIjoxNzE3NzYzNTc3LCJleHAiOjE3MTc3Njc0NzcsImFpbyI6IkUyTmdZUGh2V2VIOXc3ak9OYWo0cjNqZmw2bDdBUT09IiwiYXBwaWQiOiI1ZjBlZTFlMy1jNDdlLTQ0ZmItYTIzZi1kZDFiNGZiYzdkN2IiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9lMjAzNTcxMS01NjQwLTQ4ZTUtYmQ3MS04ZDVjODVkZTg4NDAvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiI5YTQzMWRkMy0zMmMwLTRmYzQtYTEyNi1hMTQyYjdjMjBhNzgiLCJyaCI6IjAuQVQ0QUVWY0Q0a0JXNVVpOWNZMWNoZDZJUUFjQUFBQUFBQUFBd0FBQUFBQUFBQUEtQUFBLiIsInN1YiI6IjlhNDMxZGQzLTMyYzAtNGZjNC1hMTI2LWExNDJiN2MyMGE3OCIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJBUyIsInRpZCI6ImUyMDM1NzExLTU2NDAtNDhlNS1iZDcxLThkNWM4NWRlODg0MCIsInV0aSI6InREX3RjZGk3YTBXN3hjQWZEc0VuQUEiLCJ2ZXIiOiIxLjAifQ.SvqrwkUn9Pm-h69MBz4srOBvDEn6ITCCDSvFj_s7eB0jLgsz0_yQ3zEAlK0Um1-_sAZz9Xh53h2P23SRiw_RaMG8fMM705aSh16Txiy8mwRcCWqN8ZWWlbj1Wqj-YnP-IgKkRfJXW7X98pYp0MMEauusBnfh4LH0g_LxG8d9Ad3ZKusH38pTyrNzbJsZ7isHhiRpGh7Bs33z0MxW-H8E2EToBSI_QZipldGdynou_DvNPTv0hU21C979vRh6X_ya7ATe6w8a-GwT5kEGKd3zwznFTixm1ajHr1HdSXcFpEKh1rP-o5z7pgoaAg6Mi0oIkyVEd3Wypcuw1bwRufc-8Q' // Replace 'YOUR_ACCESS_TOKEN' with your actual token
+                }
+            }
+        );
 
-        if (!response.ok) {
+        if (response.status !== 201) { // Adjust status check based on Dynamics 365 API documentation
             console.error('Error creating resource in Dynamics 365:', response.statusText);
         }
 
