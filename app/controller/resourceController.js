@@ -12,8 +12,7 @@ resourceController.create = async (req, res) => {
         const resource = new Resource(data);
         const savedResource = await resource.save();
 
-        const populatedResource = await Resource.findOne({ _id: savedResource._id }).populate('resource');
-        res.json(populatedResource);
+        
 
         const fullname = `${firstName} ${lastName}`;
         const formData = {
