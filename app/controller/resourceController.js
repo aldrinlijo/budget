@@ -28,7 +28,7 @@ resourceController.create = async (req, res) => {
 
         try {
             const response = await axios.patch(
-                `https://orgcd35d258.crm8.dynamics.com/api/data/v9.0/dia_productresource(${resourceId})`,
+                `https://orgcd35d258.crm8.dynamics.com/api/data/v9.0/dia_productresource`,
                 formData,
                 {
                     headers: {
