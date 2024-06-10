@@ -8,40 +8,54 @@ resourceController.create = async (req, res) => {
         const { type, id, firstName, lastName, role, department, status } = req.body;
         const user = req.tokenData._id;
         const data = { type, id, firstName, lastName, role, department, user, status };
-        
+
+        // Save resource to MongoDB
         const resource = new Resource(data);
         const savedResource = await resource.save();
-
-        
+        res.json(resource)
 
         const fullname = `${firstName} ${lastName}`;
         const formData = {
-            "dia_name": fullname,
-            "dia_department": department,
-            "dia_role": role,
-            "dia_id": id
+            dia_name: fullname,
+            dia_department: department,
+            dia_role: role,
+            dia_id: id
         };
 
         const resourceId = '6799792d-cd24-ef11-840a-002248d61d46'; // Replace with your actual resource ID
+        const authorizationToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCIsImtpZCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCJ9.eyJhdWQiOiJodHRwczovL29yZ2NkMzVkMjU4LmNybTguZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZTIwMzU3MTEtNTY0MC00OGU1LWJkNzEtOGQ1Yzg1ZGU4ODQwLyIsImlhdCI6MTcxNzk5MTkzMiwibmJmIjoxNzE3OTkxOTMyLCJleHAiOjE3MTc5OTU4MzIsImFpbyI6IkUyTmdZTGdlKzZFNmJZR3Y2V1psOHd2ZmwydFVBQUE9IiwiYXBwaWQiOiI1ZjBlZTFlMy1jNDdlLTQ0ZmItYTIzZi1kZDFiNGZiYzdkN2IiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9lMjAzNTcxMS01NjQwLTQ4ZTUtYmQ3MS04ZDVjODVkZTg4NDAvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiI5YTQzMWRkMy0zMmMwLTRmYzQtYTEyNi1hMTQyYjdjMjBhNzgiLCJyaCI6IjAuQVQ0QUVWY0Q0a0JXNVVpOWNZMWNoZDZJUUFjQUFBQUFBQUFBd0FBQUFBQUFBQUEtQUFBLiIsInN1YiI6IjlhNDMxZGQzLTMyYzAtNGZjNC1hMTI2LWExNDJiN2MyMGE3OCIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJBUyIsInRpZCI6ImUyMDM1NzExLTU2NDAtNDhlNS1iZDcxLThkNWM4NWRlODg0MCIsInV0aSI6IlV3MFh1UmZZZjBLVGFJNktSWHBrQUEiLCJ2ZXIiOiIxLjAifQ.CInuX8C65CrgUhbX0pOOBaHV284HAsjYwh8rMvZpbAPEKzq3MVPQRHUoPbDSa0JpZbgaajqCic612VBjQf5Gei2DPT9A7pxeSRqn2y86ce_dpDpVFDQvsP9Setm8Xixv6urOL4EJz-JxBZchkNXUwJSvITwJHodchhO6BWx-p3Hi_pwnrtF5puhXYIZJfZeV75v7_pf_LnE1XSOkxmKhxRyfoUOECqspDQfjYUn_XjntA9cDQxen6cqgU7zlKcPeMbCuqAYAORgoDaP60dzEU2Do1d2Tx3HYIdB_uz-l8aclaHJDSqpEdVhjw9NBsyvtjpiTzEnVPhE0wDjxhyboXA'; // Replace with your actual token
+
         const response = await axios.patch(
             `https://orgcd35d258.crm8.dynamics.com/api/data/v9.0/dia_productresource(${resourceId})`,
             formData,
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCIsImtpZCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCJ9.eyJhdWQiOiJodHRwczovL29yZ2NkMzVkMjU4LmNybTguZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZTIwMzU3MTEtNTY0MC00OGU1LWJkNzEtOGQ1Yzg1ZGU4ODQwLyIsImlhdCI6MTcxNzk5MTE2NSwibmJmIjoxNzE3OTkxMTY1LCJleHAiOjE3MTc5OTUwNjUsImFpbyI6IkUyTmdZSGdRdEtidDBmWURVMTJldExLZGVPYjZGUUE9IiwiYXBwaWQiOiI1ZjBlZTFlMy1jNDdlLTQ0ZmItYTIzZi1kZDFiNGZiYzdkN2IiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9lMjAzNTcxMS01NjQwLTQ4ZTUtYmQ3MS04ZDVjODVkZTg4NDAvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiI5YTQzMWRkMy0zMmMwLTRmYzQtYTEyNi1hMTQyYjdjMjBhNzgiLCJyaCI6IjAuQVQ0QUVWY0Q0a0JXNVVpOWNZMWNoZDZJUUFjQUFBQUFBQUFBd0FBQUFBQUFBQUEtQUFBLiIsInN1YiI6IjlhNDMxZGQzLTMyYzAtNGZjNC1hMTI2LWExNDJiN2MyMGE3OCIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJBUyIsInRpZCI6ImUyMDM1NzExLTU2NDAtNDhlNS1iZDcxLThkNWM4NWRlODg0MCIsInV0aSI6IjNydGZOQVFfeUVxeHZzQ0VRS3BSQUEiLCJ2ZXIiOiIxLjAifQ.J5cJXOXkxqDUIlAwiI8h72E4cJzLUoQtipjeotEzxiejBMj1977DGWKCgl5fUWSB3mT1kq4qfy8uRyG5siw7Qd9R_3dUiCvFrA7u8vYYQlVeqe6UyQkN3cziKHkBn7N0r9tmQEVnCRMD11XfhbmIQDC1Wlbb5sItfswEQM1Hr2DZbW2yKuIub9kJdsHMv1EAmLqm5fDK6RJxUtCta4tg5QGSOQXCz8i8DBIh6ywO9k4pa7PYk888hPgsrSgxOHGc6vmsaj5WUpRs7HurNt1b9DuiRJFlrpr_y9nlQd85FAQd0UblHbZTmtgsKIIZTjaPvrksl1mZ1oycVE4n3kK0cA' // Replace 'YOUR_ACCESS_TOKEN' with your actual token
+                    'Authorization': `Bearer ${authorizationToken}`
                 }
             }
         );
 
+        // Check if the Dynamics 365 update was successful
         if (response.status !== 204) { // Adjust status check based on Dynamics 365 API documentation
             console.error('Error updating resource in Dynamics 365:', response.statusText);
+            return res.status(500).json({ error: `Error updating resource in Dynamics 365: ${response.statusText}` });
         }
 
+        res.status(201).json(savedResource);
     } catch (err) {
+        // If the error is from the axios request, it will have a response object
+        if (err.response) {
+            console.error('Error updating resource in Dynamics 365:', err.response.statusText);
+            return res.status(500).json({ error: `Error updating resource in Dynamics 365: ${err.response.statusText}` });
+        }
+        
+        // General error handling
+        console.error('Error creating resource:', err);
         res.status(500).json({ error: err.message });
     }
 };
+
 
 resourceController.list = async (req, res) => {
     try {
