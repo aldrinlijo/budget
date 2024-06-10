@@ -27,7 +27,7 @@ resourceController.create = async (req, res) => {
         const authorizationToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCIsImtpZCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCJ9.eyJhdWQiOiJodHRwczovL29yZ2NkMzVkMjU4LmNybTguZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZTIwMzU3MTEtNTY0MC00OGU1LWJkNzEtOGQ1Yzg1ZGU4ODQwLyIsImlhdCI6MTcxODAyMjQyMSwibmJmIjoxNzE4MDIyNDIxLCJleHAiOjE3MTgwMjYzMjEsImFpbyI6IkUyTmdZQkRhTVBtSTUxSTV0cHJrRnlhZmxndFlBZ0E9IiwiYXBwaWQiOiI1ZjBlZTFlMy1jNDdlLTQ0ZmItYTIzZi1kZDFiNGZiYzdkN2IiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9lMjAzNTcxMS01NjQwLTQ4ZTUtYmQ3MS04ZDVjODVkZTg4NDAvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiI5YTQzMWRkMy0zMmMwLTRmYzQtYTEyNi1hMTQyYjdjMjBhNzgiLCJyaCI6IjAuQVQ0QUVWY0Q0a0JXNVVpOWNZMWNoZDZJUUFjQUFBQUFBQUFBd0FBQUFBQUFBQUEtQUFBLiIsInN1YiI6IjlhNDMxZGQzLTMyYzAtNGZjNC1hMTI2LWExNDJiN2MyMGE3OCIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJBUyIsInRpZCI6ImUyMDM1NzExLTU2NDAtNDhlNS1iZDcxLThkNWM4NWRlODg0MCIsInV0aSI6ImhHZk9qa19HdTBpWFJrOEwxVFpCQUEiLCJ2ZXIiOiIxLjAifQ.mMxco81XAZvQ-8hoeSIF6Grp7v4LGPJYjuUDB0vkc6a9Cj9Ell8SO8dVfg30pqwU0yPqfsi4aCFHfzDygWYyNnW8mKK9uIH4TASWGSK6cWE27BZrSgIxPqX-S9a6OkadOgkFU3knppCAVX2Nyy7l_DjaSbEDHm6zOJ7f8DLzabGDnJJrLKHi-ISDWUgwn5I8lBtmiAioxd_YVc6zqqvQ6_22dQg4kRGpdO7bc1lKLkcxl4eqWIcvoV-pUrP5glNUsxXKYRHWiBWZ9hcfrlp2fwITEI3Rvf2l3DCHyy8wxF5kMNU3ahMb-AAJtWvDZrH-0mLD5hirrCTUnhT1SyVtVg'; // Replace with your actual token
 
         try {
-            const response = await axios.patch(
+            const response = await axios.post(
                 `https://orgcd35d258.crm8.dynamics.com/api/data/v9.0/dia_productresource`,
                 formData,
                 {
